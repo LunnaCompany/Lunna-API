@@ -1,5 +1,6 @@
 package com.company.lunna.config;
 
+import com.company.lunna.entitys.responsavel.exception.ReponsavelAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ResponsavelNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,4 +15,9 @@ public class ExceptionEntityHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 
+    @ExceptionHandler(ReponsavelAlreadyExistsException.class)
+    public ResponseEntity handlerResponsavelAlreadyExists(ReponsavelAlreadyExistsException exception){
+        String errorMensagem = "O responsavel ja existe";
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMensagem);
+    }
 }

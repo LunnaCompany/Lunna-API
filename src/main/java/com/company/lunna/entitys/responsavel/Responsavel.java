@@ -22,7 +22,7 @@ public class Responsavel {
     @Column(nullable = false)
     private String nomeResp;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String emailResp;
 
     @Column(nullable = false)
