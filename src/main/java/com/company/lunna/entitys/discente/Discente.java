@@ -1,19 +1,17 @@
-package com.company.lunna.entity.discente;
+package com.company.lunna.entitys.discente;
 
-import com.company.lunna.entity.contatoEmergencia.ContatoEmergencia;
-import com.company.lunna.entity.deficiencia.Deficiencia;
-import com.company.lunna.entity.fichaMed.FichaMed;
-import com.company.lunna.entity.momento.Momento;
-import com.company.lunna.entity.responsavel.Responsavel;
+import com.company.lunna.entitys.contatoEmergencia.ContatoEmergencia;
+import com.company.lunna.entitys.deficiencia.Deficiencia;
+import com.company.lunna.entitys.fichaMed.FichaMed;
+import com.company.lunna.entitys.momento.Momento;
+import com.company.lunna.entitys.responsavel.Responsavel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "DISCENTE")

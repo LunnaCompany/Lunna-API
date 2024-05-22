@@ -1,11 +1,9 @@
-package com.company.lunna.entity.comidasAlergicas;
+package com.company.lunna.entitys.comidasAlergicas;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "COMIDAS_ALERGICAS")

@@ -1,12 +1,10 @@
-package com.company.lunna.entity.tratamentoMed;
+package com.company.lunna.entitys.tratamentoMed;
 
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "TRATAMENTO_MED")

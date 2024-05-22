@@ -1,4 +1,4 @@
-package com.company.lunna.entity.endereco;
+package com.company.lunna.entitys.endereco;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

@@ -1,7 +1,7 @@
-package com.company.lunna.entity.responsavel;
+package com.company.lunna.entitys.responsavel;
 
-import com.company.lunna.entity.discente.Discente;
-import com.company.lunna.entity.endereco.Endereco;
+import com.company.lunna.entitys.discente.Discente;
+import com.company.lunna.entitys.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,9 +22,6 @@ public class Responsavel {
     @Column(nullable = false)
     private String nomeResp;
 
-    @Embedded
-    private Endereco enderecoResp;
-
     @Column(nullable = false)
     private String emailResp;
 
@@ -37,6 +34,8 @@ public class Responsavel {
     @Column(nullable = false)
     private String estadoCivilResp;
 
+    @Embedded
+    private Endereco enderecoResp;
 
     @ManyToMany(mappedBy = "responsaveis")
     List<Discente> discentes;

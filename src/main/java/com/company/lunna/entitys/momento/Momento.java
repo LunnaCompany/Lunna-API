@@ -1,4 +1,4 @@
-package com.company.lunna.entity.momento;
+package com.company.lunna.entitys.momento;
 
 import jakarta.persistence.*;
 import lombok.*;

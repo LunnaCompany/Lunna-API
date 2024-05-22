@@ -1,6 +1,6 @@
-package com.company.lunna.entity.turma;
+package com.company.lunna.entitys.turma;
 
-import com.company.lunna.entity.discente.Discente;
+import com.company.lunna.entitys.discente.Discente;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

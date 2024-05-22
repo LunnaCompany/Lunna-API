@@ -1,4 +1,4 @@
-package com.company.lunna.entity.contatoEmergencia;
+package com.company.lunna.entitys.deficiencia;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,18 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "CONTATO_EMERGENCIA")
+@Table(name = "DEFICIENCIA")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContatoEmergencia {
+public class Deficiencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idContato;
+    private Integer idDef;
 
     @Column(nullable = false)
-    private String nome;
-
-    @Column(nullable = false)
-    private String numeroContato;
+    private String nomeDef;
 }

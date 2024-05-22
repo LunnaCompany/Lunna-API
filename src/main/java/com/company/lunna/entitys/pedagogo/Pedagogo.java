@@ -1,7 +1,7 @@
-package com.company.lunna.entity.pedagogo;
+package com.company.lunna.entitys.pedagogo;
 
-import com.company.lunna.entity.formacao.Formacao;
-import com.company.lunna.entity.turma.Turma;
+import com.company.lunna.entitys.formacao.Formacao;
+import com.company.lunna.entitys.turma.Turma;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

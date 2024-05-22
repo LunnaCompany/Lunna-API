@@ -1,4 +1,4 @@
-package com.company.lunna.entity.formacao;
+package com.company.lunna.entitys.formacao;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

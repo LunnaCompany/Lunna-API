@@ -1,14 +1,12 @@
-package com.company.lunna.entity.fichaMed;
+package com.company.lunna.entitys.fichaMed;
 
-import com.company.lunna.entity.comidasAlergicas.ComidasAlergicas;
-import com.company.lunna.entity.endereco.Endereco;
-import com.company.lunna.entity.tratamentoMed.TratamentoMed;
+import com.company.lunna.entitys.comidasAlergicas.ComidasAlergicas;
+import com.company.lunna.entitys.endereco.Endereco;
+import com.company.lunna.entitys.tratamentoMed.TratamentoMed;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "FICHA_MED")
