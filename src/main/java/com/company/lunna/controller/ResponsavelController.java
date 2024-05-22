@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/responsavel")
 @RequiredArgsConstructor
@@ -19,6 +21,11 @@ public class ResponsavelController {
     public ResponseEntity<Responsavel> saveResponsavel(@RequestBody ResponsavelRequestDTO body){
         Responsavel responsavelSaved = this.responsavelService.saveResponsavel(body);
         return ResponseEntity.status(HttpStatus.CREATED).body(responsavelSaved);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Responsavel>> getAllResponsaveis(){
+        return ResponseEntity.status(HttpStatus.OK).body(this.responsavelService.getAllResponsaveis());
     }
 
     @GetMapping("/{id}")
