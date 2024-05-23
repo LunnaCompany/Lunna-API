@@ -1,5 +1,6 @@
 package com.company.lunna.entitys.responsavel;
 
+import com.company.lunna.entitys.contato.Contato;
 import com.company.lunna.entitys.discente.Discente;
 import com.company.lunna.entitys.endereco.Endereco;
 import jakarta.persistence.*;
@@ -23,7 +24,16 @@ public class Responsavel {
     private String nomeResp;
 
     @Column(nullable = false, unique = true)
+    private String cpfResp;
+
+    @Column(nullable = false)
+    private String rgResp;
+
+    @Column(nullable = false, unique = true)
     private String emailResp;
+
+    @Column(nullable = false, unique = true)
+    private String emailRecResp;
 
     @Column(nullable = false)
     private String senha;
@@ -33,6 +43,15 @@ public class Responsavel {
 
     @Column(nullable = false)
     private String estadoCivilResp;
+
+    @Column(nullable = false)
+    private String ftRgResp;
+
+    @Column(nullable = false)
+    private String ftPerfilResp;
+
+    @Embedded
+    private Contato contato;
 
     @Embedded
     private Endereco enderecoResp;
