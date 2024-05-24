@@ -1,5 +1,6 @@
 package com.company.lunna.config;
 
+import com.company.lunna.entitys.discente.exception.DiscenteCpfAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ReponsavelCpfAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ReponsavelEmailAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ResponsavelNotFoundException;
@@ -25,6 +26,12 @@ public class ExceptionEntityHandler {
     @ExceptionHandler(ReponsavelCpfAlreadyExistsException.class)
     public ResponseEntity handlerCpfResponsavelAlreadyExists(ReponsavelCpfAlreadyExistsException exception){
         String errorMessage = "O CPF desse responsavel ja esta em uso";
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
+    }
+
+    @ExceptionHandler(DiscenteCpfAlreadyExistsException.class)
+    public ResponseEntity handlerDiscenteCpfAlreadyExists(DiscenteCpfAlreadyExistsException exception){
+        String errorMessage = "O CPF dessa crianca ja esta em uso";
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
     }
 }

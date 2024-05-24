@@ -32,29 +32,8 @@ public class DiscenteController {
     public ResponseEntity<Discente> saveDiscente(@RequestParam("body") String body,
                                                  @RequestParam("imgDisc") MultipartFile imgDisc) throws IOException {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-
-        DiscenteRequestDTO discenteRequestDTO = objectMapper.readValue(body, DiscenteRequestDTO.class);
-
-        String perfilImagePath = saveFile(imgDisc);
-
-        Discente discente = new Discente();
-        BeanUtils.copyProperties(discenteRequestDTO, discente);
-
-        discente.setImgDisc(perfilImagePath);
-
-        Discente discenteSaved = this.discenteService.saveDiscente(discenteRequestDTO);
+        Discente discenteSaved = this.discenteService.saveDiscente(body, imgDisc);
         return ResponseEntity.status(HttpStatus.CREATED).body(discenteSaved);
     }
 
-    private String saveFile(MultipartFile file) throws IOException{
-        String directoryPath = "src/main/resources/static/uploads/";
-
-        Files.createDirectories(Paths.get(directoryPath));
-
-        String filePath = Paths.get(directoryPath, file.getOriginalFilename()).toString();
-        Files.copy(file.getInputStream(), Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
-        return filePath;
-    }
 }
