@@ -4,6 +4,7 @@ import com.company.lunna.entitys.comidasAlergicas.ComidasAlergicas;
 import com.company.lunna.entitys.discente.Discente;
 import com.company.lunna.entitys.endereco.Endereco;
 import com.company.lunna.entitys.tratamentoMed.TratamentoMed;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -47,8 +48,4 @@ public class FichaMed {
     @ManyToOne
     @JoinColumn(name = "id_comidas")
     private ComidasAlergicas idComidas;
-
-    @OneToMany
-    @JoinColumn(name = "ID_CURSO")
-    private List<Discente> discentes;
 }

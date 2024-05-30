@@ -1,13 +1,12 @@
 package com.company.lunna.service;
 
-import com.company.lunna.dtos.FichaMedRequestDTO;
+import com.company.lunna.dtos.requests.FichaMedRequestDTO;
 import com.company.lunna.entitys.fichaMed.FichaMed;
 import com.company.lunna.entitys.fichaMed.exception.FichaMedNotFoundException;
 import com.company.lunna.repository.FichaMedRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -15,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FichaMedService {
     private final FichaMedRepository fichaMedRepository;
-
 
     public FichaMed saveFichaMed(FichaMedRequestDTO body){
         FichaMed fichaMed = new FichaMed();

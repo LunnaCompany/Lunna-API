@@ -1,13 +1,6 @@
 package com.company.lunna.service;
 
-import com.company.lunna.dtos.DiscenteRequestDTO;
-import com.company.lunna.entitys.discente.Discente;
-import com.company.lunna.repository.DiscenteRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,10 +1,11 @@
 package com.company.lunna.service;
 
-import com.company.lunna.dtos.DiscenteRequestDTO;
-import com.company.lunna.dtos.ResponsavelRequestDTO;
+import com.company.lunna.dtos.requests.DiscenteRequestDTO;
+import com.company.lunna.dtos.responses.DiscenteResponseDTO;
 import com.company.lunna.entitys.discente.Discente;
 import com.company.lunna.entitys.discente.exception.DiscenteCpfAlreadyExistsException;
 import com.company.lunna.entitys.discente.exception.DiscenteNotFoundException;
+import com.company.lunna.entitys.fichaMed.FichaMed;
 import com.company.lunna.entitys.responsavel.Responsavel;
 import com.company.lunna.repository.DiscenteRepository;
 import com.company.lunna.repository.ResponsavelRepository;
@@ -18,13 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class DiscenteService {
     private final DiscenteRepository discenteRepository;
     private final ResponsavelRepository responsavelRepository;
+    private final FichaMedService fichaMedService;
     private final FileStorageService fileStorageService;
 
     public Discente saveDiscente(String body, MultipartFile imgDisc, String cpfResp) throws IOException {
@@ -39,6 +40,8 @@ public class DiscenteService {
 
         String perfilImagePath = this.fileStorageService.saveFile(imgDisc);
 
+        FichaMed fichamed = fichaMedService.saveFichaMed(discenteRequestDTO.fichaMed());
+
         Responsavel responsavel = this.responsavelRepository.findByCpfResp(cpfResp).orElseThrow(() -> new RuntimeException("responsvel nao existe"));
 
         Discente discente = new Discente();
@@ -51,6 +54,7 @@ public class DiscenteService {
         discente.getResponsaveis().add(responsavel);
         responsavel.getDiscentes().add(discente);
         discente.setImgDisc(perfilImagePath);
+        discente.setIdFichaMed(fichamed);
 
         return this.discenteRepository.save(discente);
     }

@@ -1,4 +1,4 @@
-package com.company.lunna.dtos;
+package com.company.lunna.dtos.requests;
 
 import com.company.lunna.entitys.endereco.Endereco;
 

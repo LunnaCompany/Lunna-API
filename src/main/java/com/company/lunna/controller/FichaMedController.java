@@ -1,8 +1,7 @@
 package com.company.lunna.controller;
 
-import com.company.lunna.dtos.FichaMedRequestDTO;
+import com.company.lunna.dtos.requests.FichaMedRequestDTO;
 import com.company.lunna.entitys.fichaMed.FichaMed;
-import com.company.lunna.repository.FichaMedRepository;
 import com.company.lunna.service.FichaMedService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

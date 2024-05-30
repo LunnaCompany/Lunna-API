@@ -1,6 +1,5 @@
 package com.company.lunna.controller;
 
-import com.company.lunna.dtos.ResponsavelRequestDTO;
 import com.company.lunna.entitys.responsavel.Responsavel;
 import com.company.lunna.service.ResponsavelService;
 import lombok.RequiredArgsConstructor;

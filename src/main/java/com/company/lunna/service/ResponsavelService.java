@@ -1,13 +1,11 @@
 package com.company.lunna.service;
 
-import com.company.lunna.dtos.DiscenteRequestDTO;
-import com.company.lunna.dtos.ResponsavelRequestDTO;
+import com.company.lunna.dtos.requests.ResponsavelRequestDTO;
 import com.company.lunna.entitys.responsavel.Responsavel;
 import com.company.lunna.entitys.responsavel.exception.ReponsavelCpfAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ReponsavelEmailAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ResponsavelNotFoundException;
 import com.company.lunna.repository.ResponsavelRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

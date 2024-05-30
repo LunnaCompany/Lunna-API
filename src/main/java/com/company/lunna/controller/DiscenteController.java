@@ -1,13 +1,11 @@
 package com.company.lunna.controller;
 
-import com.company.lunna.dtos.DiscenteRequestDTO;
+import com.company.lunna.dtos.responses.DiscenteResponseDTO;
 import com.company.lunna.entitys.discente.Discente;
+import com.company.lunna.mappers.DiscenteMapper;
 import com.company.lunna.service.DiscenteService;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
@@ -26,6 +21,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DiscenteController {
     private final DiscenteService discenteService;
+    private final DiscenteMapper discenteMapper;
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Discente> saveDiscente(@RequestParam("body") String body,
                                                  @RequestParam("imgDisc") MultipartFile imgDisc,
@@ -36,8 +33,10 @@ public class DiscenteController {
 
 
     @GetMapping
-    public ResponseEntity<List<Discente>> getAllDiscente(){
-        return ResponseEntity.status(HttpStatus.OK).body(this.discenteService.getAllDiscente());
+    public ResponseEntity<List<DiscenteResponseDTO>> getAllDiscente(){
+        List<Discente> discentes = discenteService.getAllDiscente();
+        List<DiscenteResponseDTO> discenteResponse =  discenteMapper.toDiscenteResponseList(discentes);
+        return ResponseEntity.status(HttpStatus.OK).body(discenteResponse);
     }
 
     @GetMapping("/{id}")
@@ -45,5 +44,6 @@ public class DiscenteController {
         Discente discente = this.discenteService.getDiscenteById(id);
         return ResponseEntity.status(HttpStatus.OK).body(discente);
     }
+
 
 }
