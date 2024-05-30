@@ -3,6 +3,7 @@ package com.company.lunna.entitys.responsavel;
 import com.company.lunna.entitys.contato.Contato;
 import com.company.lunna.entitys.discente.Discente;
 import com.company.lunna.entitys.endereco.Endereco;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,5 +58,6 @@ public class Responsavel {
     private Endereco enderecoResp;
 
     @ManyToMany(mappedBy = "responsaveis")
+    @JsonBackReference
     List<Discente> discentes;
 }

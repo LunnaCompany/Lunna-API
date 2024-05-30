@@ -1,6 +1,8 @@
 package com.company.lunna.config;
 
 import com.company.lunna.entitys.discente.exception.DiscenteCpfAlreadyExistsException;
+import com.company.lunna.entitys.discente.exception.DiscenteNotFoundException;
+import com.company.lunna.entitys.fichaMed.exception.FichaMedNotFoundException;
 import com.company.lunna.entitys.responsavel.exception.ReponsavelCpfAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ReponsavelEmailAlreadyExistsException;
 import com.company.lunna.entitys.responsavel.exception.ResponsavelNotFoundException;
@@ -29,9 +31,21 @@ public class ExceptionEntityHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
     }
 
+    @ExceptionHandler(DiscenteNotFoundException.class)
+    public ResponseEntity handlerDiscenteNotFound(DiscenteNotFoundException exception){
+        String errorMessage = "O discente não foi encontrado";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+    }
+
     @ExceptionHandler(DiscenteCpfAlreadyExistsException.class)
     public ResponseEntity handlerDiscenteCpfAlreadyExists(DiscenteCpfAlreadyExistsException exception){
         String errorMessage = "O CPF dessa crianca ja esta em uso";
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
+    }
+
+    @ExceptionHandler(FichaMedNotFoundException.class)
+    public ResponseEntity handlerFichaMedNotFoundException(FichaMedNotFoundException exception){
+        String errorMessage = "Ficha medica não encontrada";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
 }

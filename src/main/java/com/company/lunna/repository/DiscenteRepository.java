@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface DiscenteRepository extends JpaRepository<Discente, Integer> {
-    Optional<Discente> findByCpf(String cpf);
+    Optional<Discente> findBycpfDisc(String cpf);
 }

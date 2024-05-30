@@ -1,12 +1,15 @@
 package com.company.lunna.entitys.fichaMed;
 
 import com.company.lunna.entitys.comidasAlergicas.ComidasAlergicas;
+import com.company.lunna.entitys.discente.Discente;
 import com.company.lunna.entitys.endereco.Endereco;
 import com.company.lunna.entitys.tratamentoMed.TratamentoMed;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "FICHA_MED")
@@ -44,4 +47,8 @@ public class FichaMed {
     @ManyToOne
     @JoinColumn(name = "id_comidas")
     private ComidasAlergicas idComidas;
+
+    @OneToMany
+    @JoinColumn(name = "ID_CURSO")
+    private List<Discente> discentes;
 }

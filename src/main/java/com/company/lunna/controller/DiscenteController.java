@@ -12,16 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Controller
 @RequestMapping("/discente")
@@ -30,10 +28,22 @@ public class DiscenteController {
     private final DiscenteService discenteService;
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Discente> saveDiscente(@RequestParam("body") String body,
-                                                 @RequestParam("imgDisc") MultipartFile imgDisc) throws IOException {
-
-        Discente discenteSaved = this.discenteService.saveDiscente(body, imgDisc);
+                                                 @RequestParam("imgDisc") MultipartFile imgDisc,
+                                                 @RequestParam("cpfResp") String cpfResp) throws IOException {
+        Discente discenteSaved = this.discenteService.saveDiscente(body, imgDisc, cpfResp);
         return ResponseEntity.status(HttpStatus.CREATED).body(discenteSaved);
+    }
+
+
+    @GetMapping
+    public ResponseEntity<List<Discente>> getAllDiscente(){
+        return ResponseEntity.status(HttpStatus.OK).body(this.discenteService.getAllDiscente());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Discente> getDiscenteById(@PathVariable Integer id){
+        Discente discente = this.discenteService.getDiscenteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(discente);
     }
 
 }

@@ -5,6 +5,7 @@ import com.company.lunna.entitys.deficiencia.Deficiencia;
 import com.company.lunna.entitys.fichaMed.FichaMed;
 import com.company.lunna.entitys.momento.Momento;
 import com.company.lunna.entitys.responsavel.Responsavel;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,7 @@ public class Discente {
     private String cpfDisc;
 
     @Column(nullable = false)
-    private String nome_disc;
+    private String nomeDisc;
 
     @Column(nullable = false)
     private LocalDate dataNasDisc;
@@ -63,5 +64,6 @@ public class Discente {
             joinColumns = @JoinColumn(name = "id_disc"),
             inverseJoinColumns = @JoinColumn(name = "id_resp")
     )
+    @JsonManagedReference
     List<Responsavel> responsaveis;
 }
