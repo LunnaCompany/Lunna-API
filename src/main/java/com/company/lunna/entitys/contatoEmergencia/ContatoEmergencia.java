@@ -14,10 +14,12 @@ public class ContatoEmergencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idContato;
-
     @Column(nullable = false)
     private String nome;
-
     @Column(nullable = false)
-    private String numeroContato;
+    private String numeroTelefone;
+    @Column(nullable = false)
+    private String numeroCelular;
+    @Column(nullable = false)
+    private String parentesco;
 }

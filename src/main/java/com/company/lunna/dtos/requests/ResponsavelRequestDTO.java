@@ -6,6 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 
-public record ResponsavelRequestDTO(String nomeResp, String cpfResp, String rgResp, String emailResp, String emailRecResp, String senha, String profissaoResp, String estadoCivilResp, String ftRgResp, String ftPerfilResp, Contato contato, Endereco enderecoResp) {
-
+public record ResponsavelRequestDTO(
+        String nomeResp,
+        String cpfResp,
+        String rgResp,
+        String emailResp,
+        String emailRecResp,
+        String senha,
+        String ftRgResp,
+        String ftPerfilResp,
+        Contato contato,
+        Endereco enderecoResp
+) {
 }
+

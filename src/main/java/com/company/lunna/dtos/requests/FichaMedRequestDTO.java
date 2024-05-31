@@ -1,6 +1,14 @@
 package com.company.lunna.dtos.requests;
+import com.company.lunna.entitys.enderecoHospital.EnderecoHospital;
 
-import com.company.lunna.entitys.endereco.Endereco;
-
-public record FichaMedRequestDTO (String planSaud, String tipSang, String observacoes, String numCartSus, Double nConvenio, Endereco endereco, String remedios){
-}
+public record FichaMedRequestDTO (
+        String planSaud,
+        String cuidados,
+        String numCartSus,
+        String remedios,
+        String comidasAlergicas,
+        String descTratamento,
+        Integer qtdHoraMed,
+        Float qtdMed,
+        EnderecoHospital endereco
+){ }

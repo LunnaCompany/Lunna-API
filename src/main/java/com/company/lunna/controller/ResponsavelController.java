@@ -1,6 +1,8 @@
 package com.company.lunna.controller;
 
+import com.company.lunna.dtos.responses.ResponsavelResponseDTO;
 import com.company.lunna.entitys.responsavel.Responsavel;
+import com.company.lunna.mappers.ResponsavelMapper;
 import com.company.lunna.service.ResponsavelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ResponsavelController {
     private final ResponsavelService responsavelService;
+    private final ResponsavelMapper responsavelMapper;
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Responsavel> saveResponsavel(@RequestParam String body,
                                                        @RequestParam("ftPerfilResp") MultipartFile ftPerfilResp,
@@ -27,13 +30,16 @@ public class ResponsavelController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Responsavel>> getAllResponsaveis(){
-        return ResponseEntity.status(HttpStatus.OK).body(this.responsavelService.getAllResponsaveis());
+    public ResponseEntity<List<ResponsavelResponseDTO>> getAllResponsaveis(){
+        List<Responsavel> responsaveis = this.responsavelService.getAllResponsaveis();
+        List<ResponsavelResponseDTO> responsavelResponse = this.responsavelMapper.toResponsavelResponseList(responsaveis);
+        return ResponseEntity.status(HttpStatus.OK).body(responsavelResponse);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Responsavel> getResponsavel(@PathVariable Integer id){
+    public ResponseEntity<ResponsavelResponseDTO> getResponsavel(@PathVariable Integer id){
         Responsavel responsavel = this.responsavelService.getResponsavelById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(responsavel);
+        ResponsavelResponseDTO responsavelResponse = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
+        return ResponseEntity.status(HttpStatus.OK).body(responsavelResponse);
     }
 }

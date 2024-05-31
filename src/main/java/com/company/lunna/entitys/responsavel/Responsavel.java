@@ -40,12 +40,6 @@ public class Responsavel {
     private String senha;
 
     @Column(nullable = false)
-    private String profissaoResp;
-
-    @Column(nullable = false)
-    private String estadoCivilResp;
-
-    @Column(nullable = false)
     private String ftRgResp;
 
     @Column(nullable = false)

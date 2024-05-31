@@ -1,15 +1,13 @@
 package com.company.lunna.entitys.fichaMed;
 
-import com.company.lunna.entitys.comidasAlergicas.ComidasAlergicas;
-import com.company.lunna.entitys.discente.Discente;
-import com.company.lunna.entitys.endereco.Endereco;
-import com.company.lunna.entitys.tratamentoMed.TratamentoMed;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.company.lunna.entitys.enderecoHospital.EnderecoHospital;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -25,27 +23,22 @@ public class FichaMed {
     @Column(nullable = false)
     private String planSaud;
 
-    @Column(nullable = false)
-    private String tipSang;
+    private String cuidados;
 
     @Column(nullable = false)
-    private String observacoes;
-
     private String numCartSus;
-
-    @Column(nullable = false)
-    private Double nConvenio;
-
-    @Column(nullable = false)
-    private Endereco endereco;
 
     private String remedios;
 
-    @ManyToOne
-    @JoinColumn(name = "id_tratamento")
-    private TratamentoMed idTratamento;
+    private String comidasAlergicas;
 
-    @ManyToOne
-    @JoinColumn(name = "id_comidas")
-    private ComidasAlergicas idComidas;
+    private String descTratamento;
+
+    private Integer qtdHoraMed;
+
+    private Float qtdMed;
+
+    @Column(nullable = false)
+    private EnderecoHospital endereco;
+
 }
