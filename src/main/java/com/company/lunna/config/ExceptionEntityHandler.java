@@ -3,9 +3,7 @@ package com.company.lunna.config;
 import com.company.lunna.entitys.discente.exception.DiscenteCpfAlreadyExistsException;
 import com.company.lunna.entitys.discente.exception.DiscenteNotFoundException;
 import com.company.lunna.entitys.fichaMed.exception.FichaMedNotFoundException;
-import com.company.lunna.entitys.responsavel.exception.ReponsavelCpfAlreadyExistsException;
-import com.company.lunna.entitys.responsavel.exception.ReponsavelEmailAlreadyExistsException;
-import com.company.lunna.entitys.responsavel.exception.ResponsavelNotFoundException;
+import com.company.lunna.entitys.responsavel.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -48,4 +46,6 @@ public class ExceptionEntityHandler {
         String errorMessage = "Ficha medica não encontrada";
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
     }
+
+
 }

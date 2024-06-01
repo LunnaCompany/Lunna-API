@@ -25,6 +25,7 @@ public class ResponsavelController {
     public ResponseEntity<Responsavel> saveResponsavel(@RequestParam String body,
                                                        @RequestParam("ftPerfilResp") MultipartFile ftPerfilResp,
                                                        @RequestParam("ftRgResp") MultipartFile ftRgResp) throws IOException {
+
         Responsavel responsavelSaved = this.responsavelService.saveResponsavel(body, ftPerfilResp, ftRgResp);
         return ResponseEntity.status(HttpStatus.CREATED).body(responsavelSaved);
     }

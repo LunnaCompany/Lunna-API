@@ -6,7 +6,6 @@ import com.company.lunna.mappers.DiscenteMapper;
 import com.company.lunna.service.DiscenteService;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +27,7 @@ public class DiscenteController {
     public ResponseEntity<Discente> saveDiscente(@RequestParam("body") String body,
                                                  @RequestParam("imgDisc") MultipartFile imgDisc,
                                                  @RequestParam("cpfResp") String cpfResp) throws IOException {
+
         Discente discenteSaved = this.discenteService.saveDiscente(body, imgDisc, cpfResp);
         return ResponseEntity.status(HttpStatus.CREATED).body(discenteSaved);
     }
