@@ -58,7 +58,7 @@ public class DiscenteMapper {
                 discente.getAlturaDisc(),
                 discente.getPesoDisc(),
                 discente.getImgDisc(),
-                discente.getIdDef(),
+                discente.getDeficiencia(),
                 fichaMedId,
                 contatoId,
                 discente.getIdMomento(),

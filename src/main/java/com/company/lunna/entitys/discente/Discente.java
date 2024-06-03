@@ -43,9 +43,7 @@ public class Discente {
     @Column(nullable = false)
     private String imgDisc;
 
-    @ManyToOne
-    @JoinColumn(name = "id_def")
-    private Deficiencia idDef;
+    private String deficiencia;
 
     @ManyToOne
     @JoinColumn(name = "id_ficha_med")

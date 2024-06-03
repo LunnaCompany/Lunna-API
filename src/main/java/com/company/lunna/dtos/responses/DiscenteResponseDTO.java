@@ -24,7 +24,7 @@ public class DiscenteResponseDTO {
     private Float alturaDisc;
     private Float pesoDisc;
     private String imgDisc;
-    private Deficiencia idDef;
+    private String defiencia;
     private FichaMedIdResponseDto idFichaMed;
     private ContatoEmergenciaResponseDTO idContato;
     private Momento idMomento;

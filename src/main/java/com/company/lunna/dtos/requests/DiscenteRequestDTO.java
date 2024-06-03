@@ -13,6 +13,8 @@ public record DiscenteRequestDTO(
         Float alturaDisc,
         Float pesoDisc,
         String imgDisc,
+        String deficiencia,
         FichaMedRequestDTO fichaMed,
         ContatoEmergenciaRequestDTO contatoEmergencia
+
 ) { }
