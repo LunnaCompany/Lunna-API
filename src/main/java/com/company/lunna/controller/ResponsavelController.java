@@ -43,4 +43,18 @@ public class ResponsavelController {
         ResponsavelResponseDTO responsavelResponse = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
         return ResponseEntity.status(HttpStatus.OK).body(responsavelResponse);
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<ResponsavelResponseDTO> getResponsavelByEmail(@PathVariable String email){
+        Responsavel responsavel = this.responsavelService.getResponsavelByEmail(email);
+        ResponsavelResponseDTO responsavelResponseDTO = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
+        return ResponseEntity.status(HttpStatus.OK).body(responsavelResponseDTO);
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<ResponsavelResponseDTO> getResponsavelByCPF(@PathVariable String cpf){
+        Responsavel responsavel = this.responsavelService.getResponsavelByCpf(cpf);
+        ResponsavelResponseDTO responsavelResponse = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
+        return ResponseEntity.status(HttpStatus.OK).body(responsavelResponse);
+    }
 }

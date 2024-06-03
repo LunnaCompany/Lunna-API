@@ -33,7 +33,7 @@ public class Responsavel {
     @Column(nullable = false, unique = true)
     private String emailResp;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String emailRecResp;
 
     @Column(nullable = false)

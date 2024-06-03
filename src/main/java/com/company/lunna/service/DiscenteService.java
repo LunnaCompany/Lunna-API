@@ -2,6 +2,7 @@ package com.company.lunna.service;
 
 import com.company.lunna.dtos.requests.DiscenteRequestDTO;
 import com.company.lunna.dtos.responses.DiscenteResponseDTO;
+import com.company.lunna.entitys.contatoEmergencia.ContatoEmergencia;
 import com.company.lunna.entitys.discente.Discente;
 import com.company.lunna.entitys.discente.exception.DiscenteCpfAlreadyExistsException;
 import com.company.lunna.entitys.discente.exception.DiscenteNotFoundException;
@@ -26,6 +27,7 @@ public class DiscenteService {
     private final DiscenteRepository discenteRepository;
     private final ResponsavelRepository responsavelRepository;
     private final FichaMedService fichaMedService;
+    private final ContatoEmergenciaService contatoEmergenciaService;
     private final FileStorageService fileStorageService;
 
     public Discente saveDiscente(String body, MultipartFile imgDisc, String cpfResp) throws IOException {
@@ -41,6 +43,7 @@ public class DiscenteService {
         String perfilImagePath = this.fileStorageService.saveFile(imgDisc);
 
         FichaMed fichamed = fichaMedService.saveFichaMed(discenteRequestDTO.fichaMed());
+        ContatoEmergencia contatoEmergencia = contatoEmergenciaService.saveContatoEmergencia(discenteRequestDTO.contatoEmergencia());
 
         Responsavel responsavel = this.responsavelRepository.findByCpfResp(cpfResp).orElseThrow(() -> new RuntimeException("responsvel nao existe"));
 
@@ -55,6 +58,7 @@ public class DiscenteService {
         responsavel.getDiscentes().add(discente);
         discente.setImgDisc(perfilImagePath);
         discente.setIdFichaMed(fichamed);
+        discente.setIdContato(contatoEmergencia);
 
         return this.discenteRepository.save(discente);
     }
@@ -65,6 +69,10 @@ public class DiscenteService {
 
     public Discente getDiscenteById(Integer idDiscente){
         return this.discenteRepository.findById(idDiscente).orElseThrow(() -> new DiscenteNotFoundException("Discente não encontrado"));
+    }
+
+    public Discente getDiscenteByCpf(String cpf){
+        return this.discenteRepository.findBycpfDisc(cpf).orElseThrow(() -> new DiscenteNotFoundException("Discente não encontrado"));
     }
 
     private void verifyDiscenteExists(String cpf){

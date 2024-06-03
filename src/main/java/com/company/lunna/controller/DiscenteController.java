@@ -47,5 +47,12 @@ public class DiscenteController {
         return ResponseEntity.status(HttpStatus.OK).body(discenteResponse);
     }
 
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<DiscenteResponseDTO> getDiscenteByCpf(@PathVariable String cpf){
+        Discente discente = this.discenteService.getDiscenteByCpf(cpf);
+        DiscenteResponseDTO discenteResponse = this.discenteMapper.toDiscenteResponseDTO(discente);
+        return ResponseEntity.status(HttpStatus.OK).body(discenteResponse);
+    }
+
 
 }

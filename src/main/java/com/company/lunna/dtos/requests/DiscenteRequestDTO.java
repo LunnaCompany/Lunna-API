@@ -1,5 +1,6 @@
 package com.company.lunna.dtos.requests;
 
+import com.company.lunna.dtos.responses.ContatoEmergenciaResponseDTO;
 import com.company.lunna.entitys.fichaMed.FichaMed;
 
 import java.time.LocalDate;
@@ -12,5 +13,6 @@ public record DiscenteRequestDTO(
         Float alturaDisc,
         Float pesoDisc,
         String imgDisc,
-        FichaMedRequestDTO fichaMed
+        FichaMedRequestDTO fichaMed,
+        ContatoEmergenciaRequestDTO contatoEmergencia
 ) { }

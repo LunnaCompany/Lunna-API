@@ -26,7 +26,7 @@ public class DiscenteResponseDTO {
     private String imgDisc;
     private Deficiencia idDef;
     private FichaMedIdResponseDto idFichaMed;
-    private ContatoEmergencia idContato;
+    private ContatoEmergenciaResponseDTO idContato;
     private Momento idMomento;
     private List<ResponsavelIdResponseDTO> idResp;
 }

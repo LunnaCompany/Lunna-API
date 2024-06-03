@@ -50,6 +50,15 @@ public class ResponsavelService {
     public Responsavel getResponsavelById(Integer responsavelId) {
         return this.responsavelRepository.findById(responsavelId).orElseThrow(() -> new ResponsavelNotFoundException("responsavel não encontrado"));
     }
+
+    public Responsavel getResponsavelByEmail(String emailResp){
+        return this.responsavelRepository.findByEmailResp(emailResp).orElseThrow(() -> new ResponsavelNotFoundException("responsavel não encontrado"));
+    }
+
+    public Responsavel getResponsavelByCpf(String emailResp){
+        return this.responsavelRepository.findByCpfResp(emailResp).orElseThrow(() -> new ResponsavelNotFoundException("responsavel não encontrado"));
+    }
+
     public void verifyResponsavelExists(String cpf, String email){
         if(this.responsavelRepository.findByEmailResp(email).isPresent()) {
             throw new ReponsavelEmailAlreadyExistsException("O email desse responsavel ja foi cadastrado");
