@@ -26,4 +26,5 @@ public class ResponsavelResponseDTO {
     private Contato contato;
     private Endereco enderecoResp;
     private List<DiscenteResponseDTO> discentes;
+    private String token;
 }

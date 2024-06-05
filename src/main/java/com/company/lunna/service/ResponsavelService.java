@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class ResponsavelService {
     private final ResponsavelRepository responsavelRepository;
     private final FileStorageService fileStorageService;
+    private final PasswordEncoder passwordEncoder;
 
     public Responsavel saveResponsavel(String body, MultipartFile ftPerfilResp, MultipartFile ftRgResp) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -36,6 +38,7 @@ public class ResponsavelService {
         Responsavel responsavel = new Responsavel();
         BeanUtils.copyProperties(responsavelRequestDTO, responsavel);
 
+        responsavel.setSenha(passwordEncoder.encode(responsavelRequestDTO.senha()));
         responsavel.setFtPerfilResp(ftPerfilRespPath);
         responsavel.setFtPerfilResp(ftRgRespPath);
 
@@ -58,6 +61,8 @@ public class ResponsavelService {
     public Responsavel getResponsavelByCpf(String emailResp){
         return this.responsavelRepository.findByCpfResp(emailResp).orElseThrow(() -> new ResponsavelNotFoundException("responsavel não encontrado"));
     }
+
+
 
     public void verifyResponsavelExists(String cpf, String email){
         if(this.responsavelRepository.findByEmailResp(email).isPresent()) {

@@ -1,13 +1,17 @@
 package com.company.lunna.controller;
 
+import com.company.lunna.dtos.requests.LoginRespRequestDTO;
+import com.company.lunna.dtos.responses.LoginResponseDTO;
 import com.company.lunna.dtos.responses.ResponsavelResponseDTO;
 import com.company.lunna.entitys.responsavel.Responsavel;
 import com.company.lunna.mappers.ResponsavelMapper;
+import com.company.lunna.security.TokenService;
 import com.company.lunna.service.ResponsavelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,13 +25,27 @@ import java.util.List;
 public class ResponsavelController {
     private final ResponsavelService responsavelService;
     private final ResponsavelMapper responsavelMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenService tokenService;
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Responsavel> saveResponsavel(@RequestParam String body,
+    public ResponseEntity saveResponsavel(@RequestParam String body,
                                                        @RequestParam("ftPerfilResp") MultipartFile ftPerfilResp,
                                                        @RequestParam("ftRgResp") MultipartFile ftRgResp) throws IOException {
 
         Responsavel responsavelSaved = this.responsavelService.saveResponsavel(body, ftPerfilResp, ftRgResp);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responsavelSaved);
+        String token = this.tokenService.generateToken(responsavelSaved);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new LoginResponseDTO(responsavelSaved.getNomeResp(), token));
+    }
+
+    @PostMapping("/login-responsavel")
+    public ResponseEntity login(@RequestBody LoginRespRequestDTO body){
+        Responsavel responsavel = responsavelService.getResponsavelByEmail(body.email());
+        if (passwordEncoder.matches(responsavel.getSenha(), body.senha())){
+            String token = tokenService.generateToken(responsavel);
+            return ResponseEntity.status(HttpStatus.OK).body(new LoginResponseDTO(responsavel.getNomeResp(), token));
+        }
+
+        return  ResponseEntity.badRequest().build();
     }
 
     @GetMapping
