@@ -4,6 +4,7 @@ import com.company.lunna.dtos.requests.LoginRespRequestDTO;
 import com.company.lunna.dtos.responses.LoginResponseDTO;
 import com.company.lunna.dtos.responses.ResponsavelResponseDTO;
 import com.company.lunna.entitys.responsavel.Responsavel;
+import com.company.lunna.entitys.responsavel.exception.ResponsavelNotFoundException;
 import com.company.lunna.mappers.ResponsavelMapper;
 import com.company.lunna.security.TokenService;
 import com.company.lunna.service.ResponsavelService;
@@ -40,7 +41,7 @@ public class ResponsavelController {
     @PostMapping("/login-responsavel")
     public ResponseEntity login(@RequestBody LoginRespRequestDTO body){
         Responsavel responsavel = responsavelService.getResponsavelByEmail(body.email());
-        if (passwordEncoder.matches(responsavel.getSenha(), body.senha())){
+        if (passwordEncoder.matches(body.senha(), responsavel.getSenha())){
             String token = tokenService.generateToken(responsavel);
             return ResponseEntity.status(HttpStatus.OK).body(new LoginResponseDTO(responsavel.getNomeResp(), token));
         }
@@ -56,10 +57,10 @@ public class ResponsavelController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponsavelResponseDTO> getResponsavel(@PathVariable Integer id){
-        Responsavel responsavel = this.responsavelService.getResponsavelById(id);
-        ResponsavelResponseDTO responsavelResponse = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
-        return ResponseEntity.status(HttpStatus.OK).body(responsavelResponse);
+    public ResponseEntity<ResponsavelResponseDTO> getResponsavel(@PathVariable Integer id) {
+            Responsavel responsavel = this.responsavelService.getResponsavelById(id);
+            ResponsavelResponseDTO responsavelResponse = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
+            return ResponseEntity.ok().body(responsavelResponse);
     }
 
     @GetMapping("/email/{email}")

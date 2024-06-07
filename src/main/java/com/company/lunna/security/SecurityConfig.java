@@ -33,10 +33,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/discente").permitAll()
                         .requestMatchers(HttpMethod.POST, "/ficha-med").permitAll()
                         .requestMatchers(HttpMethod.POST, "/contato-emergencia").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/login-responsavel").permitAll()
+                        .requestMatchers(HttpMethod.POST, "responsavel/login-responsavel").permitAll()
                         .requestMatchers(HttpMethod.GET, "/responsavel/cpf/{cpf}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/responsavel/email/{email}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/discente/cpf/{cpf}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/responsavel").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
