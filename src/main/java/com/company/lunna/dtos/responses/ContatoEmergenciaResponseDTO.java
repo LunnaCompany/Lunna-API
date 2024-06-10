@@ -8,5 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContatoEmergenciaResponseDTO {
-    private Integer idContato;
+    private String nome;
+    private String numeroTelefone;
+    private String numeroCelular;
+    private String parentesco;
 }

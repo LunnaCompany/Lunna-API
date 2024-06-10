@@ -57,8 +57,8 @@ public class DiscenteService {
         discente.getResponsaveis().add(responsavel);
         responsavel.getDiscentes().add(discente);
         discente.setImgDisc(perfilImagePath);
-        discente.setIdFichaMed(fichamed);
-        discente.setIdContato(contatoEmergencia);
+        discente.setFichaMed(fichamed);
+        discente.setContato(contatoEmergencia);
 
         return this.discenteRepository.save(discente);
     }

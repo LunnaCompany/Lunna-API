@@ -48,11 +48,11 @@ public class Discente {
     @ManyToOne
     @JoinColumn(name = "id_ficha_med")
     @JsonBackReference
-    private FichaMed idFichaMed;
+    private FichaMed fichaMed;
 
     @ManyToOne
     @JoinColumn(name = "id_contato_emergencia")
-    private ContatoEmergencia idContato;
+    private ContatoEmergencia contato;
 
     @ManyToOne
     @JoinColumn(name = "id_momento")

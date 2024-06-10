@@ -2,7 +2,7 @@ package com.company.lunna.mappers;
 
 import com.company.lunna.dtos.responses.ContatoEmergenciaResponseDTO;
 import com.company.lunna.dtos.responses.DiscenteResponseDTO;
-import com.company.lunna.dtos.responses.FichaMedIdResponseDto;
+import com.company.lunna.dtos.responses.FichaMedResponseDto;
 import com.company.lunna.dtos.responses.ResponsavelIdResponseDTO;
 import com.company.lunna.entitys.contatoEmergencia.ContatoEmergencia;
 import com.company.lunna.entitys.discente.Discente;
@@ -27,11 +27,11 @@ public class DiscenteMapper {
 
 
 
-    private FichaMedIdResponseDto toFichaMedIdResponseDto(FichaMed fichaMed){
+    private FichaMedResponseDto toFichaMedIdResponseDto(FichaMed fichaMed){
         if (fichaMed == null) {
             return null;
         }
-        return modelMapper.map(fichaMed, FichaMedIdResponseDto.class);
+        return modelMapper.map(fichaMed, FichaMedResponseDto.class);
     }
 
     private ContatoEmergenciaResponseDTO toContatoEmergenciaResponseDTO(ContatoEmergencia contatoEmergencia){
@@ -47,8 +47,8 @@ public class DiscenteMapper {
                 .map(responsavel -> new ResponsavelIdResponseDTO(responsavel.getIdResp()))
                 .collect(Collectors.toList());
 
-        FichaMedIdResponseDto fichaMedId = toFichaMedIdResponseDto(discente.getIdFichaMed());
-        ContatoEmergenciaResponseDTO contatoId = toContatoEmergenciaResponseDTO(discente.getIdContato());
+        FichaMedResponseDto fichaMed = toFichaMedIdResponseDto(discente.getFichaMed());
+        ContatoEmergenciaResponseDTO contato = toContatoEmergenciaResponseDTO(discente.getContato());
 
         return new DiscenteResponseDTO(
                 discente.getIdDisc(),
@@ -59,8 +59,8 @@ public class DiscenteMapper {
                 discente.getPesoDisc(),
                 discente.getImgDisc(),
                 discente.getDeficiencia(),
-                fichaMedId,
-                contatoId,
+                fichaMed,
+                contato,
                 discente.getIdMomento(),
                 responsaveisIds
         );
