@@ -9,6 +9,9 @@ import com.company.lunna.mappers.ResponsavelMapper;
 import com.company.lunna.security.TokenService;
 import com.company.lunna.service.ResponsavelService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +20,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -41,12 +48,13 @@ public class ResponsavelController {
     @PostMapping("/login-responsavel")
     public ResponseEntity login(@RequestBody LoginRespRequestDTO body){
         Responsavel responsavel = responsavelService.getResponsavelByEmail(body.email());
+
         if (passwordEncoder.matches(body.senha(), responsavel.getSenha())){
             String token = tokenService.generateToken(responsavel);
             return ResponseEntity.status(HttpStatus.OK).body(new LoginResponseDTO(responsavel.getNomeResp(), token));
+        } else{
+            throw new ResponsavelNotFoundException("Responsavel não esxiste");
         }
-
-        return  ResponseEntity.badRequest().build();
     }
 
     @GetMapping
@@ -56,11 +64,15 @@ public class ResponsavelController {
         return ResponseEntity.status(HttpStatus.OK).body(responsavelResponse);
     }
 
+
+
+
+
     @GetMapping("/{id}")
     public ResponseEntity<ResponsavelResponseDTO> getResponsavel(@PathVariable Integer id) {
-            Responsavel responsavel = this.responsavelService.getResponsavelById(id);
-            ResponsavelResponseDTO responsavelResponse = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
-            return ResponseEntity.ok().body(responsavelResponse);
+        Responsavel responsavel = this.responsavelService.getResponsavelById(id);
+        ResponsavelResponseDTO responsavelResponse = this.responsavelMapper.toResponsavelResponseDTO(responsavel);
+        return ResponseEntity.ok().body(responsavelResponse);
     }
 
     @GetMapping("/email/{email}")

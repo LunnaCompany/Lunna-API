@@ -38,6 +38,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/responsavel/email/{email}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/discente/cpf/{cpf}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/responsavel").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/responsavel/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/images").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

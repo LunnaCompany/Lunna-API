@@ -25,25 +25,27 @@ public class ResponsavelService {
     private final PasswordEncoder passwordEncoder;
 
     public Responsavel saveResponsavel(String body, MultipartFile ftPerfilResp, MultipartFile ftRgResp) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
 
-        ResponsavelRequestDTO responsavelRequestDTO = objectMapper.readValue(body, ResponsavelRequestDTO.class);
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
 
-        verifyResponsavelExists(responsavelRequestDTO.cpfResp(), responsavelRequestDTO.emailResp());
+            ResponsavelRequestDTO responsavelRequestDTO = objectMapper.readValue(body, ResponsavelRequestDTO.class);
 
-        String ftPerfilRespPath = this.fileStorageService.saveFile(ftPerfilResp);
-        String ftRgRespPath  = this.fileStorageService.saveFile(ftRgResp);
+            verifyResponsavelExists(responsavelRequestDTO.cpfResp(), responsavelRequestDTO.emailResp());
 
-        Responsavel responsavel = new Responsavel();
-        BeanUtils.copyProperties(responsavelRequestDTO, responsavel);
+            String ftPerfilRespPath = this.fileStorageService.saveFile(ftPerfilResp);
+            String ftRgRespPath  = this.fileStorageService.saveFile(ftRgResp);
 
-        responsavel.setSenha(passwordEncoder.encode(responsavelRequestDTO.senha()));
-        responsavel.setFtPerfilResp(ftPerfilRespPath);
-        responsavel.setFtPerfilResp(ftRgRespPath);
+            Responsavel responsavel = new Responsavel();
+            BeanUtils.copyProperties(responsavelRequestDTO, responsavel);
 
-        BeanUtils.copyProperties(body, responsavel);
-        return this.responsavelRepository.save(responsavel);
+            responsavel.setSenha(passwordEncoder.encode(responsavelRequestDTO.senha()));
+            responsavel.setFtPerfilResp(ftPerfilRespPath);
+            responsavel.setFtPerfilResp(ftRgRespPath);
+
+            BeanUtils.copyProperties(body, responsavel);
+            return this.responsavelRepository.save(responsavel);
+
     }
 
     public List<Responsavel> getAllResponsaveis(){
