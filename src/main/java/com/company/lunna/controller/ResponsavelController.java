@@ -64,10 +64,6 @@ public class ResponsavelController {
         return ResponseEntity.status(HttpStatus.OK).body(responsavelResponse);
     }
 
-
-
-
-
     @GetMapping("/{id}")
     public ResponseEntity<ResponsavelResponseDTO> getResponsavel(@PathVariable Integer id) {
         Responsavel responsavel = this.responsavelService.getResponsavelById(id);

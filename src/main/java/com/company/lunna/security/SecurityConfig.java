@@ -41,6 +41,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/responsavel/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/images").permitAll()
                         .requestMatchers(HttpMethod.GET, "/contato-emergencia").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/discente").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

@@ -20,7 +20,7 @@ public class DiscenteResponseDTO {
     private Float alturaDisc;
     private Float pesoDisc;
     private String imgDisc;
-    private String defiencia;
+    private String deficiencia;
     private FichaMedResponseDto fichaMed;
     private ContatoEmergenciaResponseDTO contato;
     private Momento idMomento;
