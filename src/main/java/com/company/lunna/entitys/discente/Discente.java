@@ -5,6 +5,7 @@ import com.company.lunna.entitys.deficiencia.Deficiencia;
 import com.company.lunna.entitys.fichaMed.FichaMed;
 import com.company.lunna.entitys.momento.Momento;
 import com.company.lunna.entitys.responsavel.Responsavel;
+import com.company.lunna.entitys.turma.Turma;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -57,6 +58,11 @@ public class Discente {
     @ManyToOne
     @JoinColumn(name = "id_momento")
     private Momento idMomento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_turma", nullable = false)
+    @JsonBackReference
+    private Turma turma;
 
     @ManyToMany
     @JoinTable(

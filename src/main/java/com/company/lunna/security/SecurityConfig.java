@@ -34,6 +34,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/ficha-med").permitAll()
                         .requestMatchers(HttpMethod.POST, "/contato-emergencia").permitAll()
                         .requestMatchers(HttpMethod.POST, "responsavel/login-responsavel").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/turma").permitAll()
                         .requestMatchers(HttpMethod.GET, "/responsavel/cpf/{cpf}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/responsavel/email/{email}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/discente/cpf/{cpf}").permitAll()
@@ -42,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/images").permitAll()
                         .requestMatchers(HttpMethod.GET, "/contato-emergencia").permitAll()
                         .requestMatchers(HttpMethod.GET, "/discente").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/turma").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,10 +1,14 @@
 package com.company.lunna.entitys.turma;
 
 import com.company.lunna.entitys.discente.Discente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "TURMA")
@@ -22,7 +26,13 @@ public class Turma {
     @Column(nullable = false)
     private int quantidadeAlunos;
 
-    @ManyToOne
-    @JoinColumn(name = "id_disc")
-    private Discente discenteId;
+    @Column(nullable = false)
+    private String periodo;
+
+    @Column(nullable = false)
+    private String tema;
+
+    @OneToMany(mappedBy = "turma")
+    @JsonManagedReference
+    private List<Discente> discentes;
 }
