@@ -9,16 +9,15 @@ import com.company.lunna.entitys.turma.Turma;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "DISCENTE")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Discente {
@@ -60,7 +59,7 @@ public class Discente {
     private Momento idMomento;
 
     @ManyToOne
-    @JoinColumn(name = "id_turma", nullable = false)
+    @JoinColumn(name = "id_turma")
     @JsonBackReference
     private Turma turma;
 

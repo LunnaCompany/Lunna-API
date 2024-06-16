@@ -44,7 +44,7 @@ public class DiscenteMapper {
 
     public DiscenteResponseDTO toDiscenteResponseDTO(Discente discente) {
         List<ResponsavelIdResponseDTO> responsaveisIds = discente.getResponsaveis().stream()
-                .map(responsavel -> new ResponsavelIdResponseDTO(responsavel.getIdResp()))
+                .map(responsavel -> new ResponsavelIdResponseDTO(responsavel.getIdResp(), responsavel.getNomeResp(), responsavel.getCpfResp(), responsavel.getEmailResp()))
                 .collect(Collectors.toList());
 
         FichaMedResponseDto fichaMed = toFichaMedIdResponseDto(discente.getFichaMed());

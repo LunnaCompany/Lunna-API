@@ -4,15 +4,14 @@ import com.company.lunna.entitys.discente.Discente;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "TURMA")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Turma {
@@ -32,7 +31,7 @@ public class Turma {
     @Column(nullable = false)
     private String tema;
 
-    @OneToMany(mappedBy = "turma")
+    @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Discente> discentes;
 }

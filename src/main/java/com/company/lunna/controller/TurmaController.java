@@ -1,7 +1,11 @@
 package com.company.lunna.controller;
 
 import com.company.lunna.dtos.requests.TurmaRequestDTO;
+import com.company.lunna.dtos.responses.ResponsavelResponseDTO;
+import com.company.lunna.dtos.responses.TurmaResponseDTO;
+import com.company.lunna.entitys.responsavel.Responsavel;
 import com.company.lunna.entitys.turma.Turma;
+import com.company.lunna.mappers.TurmaMapper;
 import com.company.lunna.service.TurmaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TurmaController {
     private final TurmaService turmaService;
+    private final TurmaMapper turmaMapper;
 
     @PostMapping
     public ResponseEntity<Turma> saveTurma(@RequestBody TurmaRequestDTO body){
@@ -27,8 +32,10 @@ public class TurmaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Turma>> getAllTurma(){
-        return ResponseEntity.status(HttpStatus.OK).body(this.turmaService.getTurmas());
+    public ResponseEntity<List<TurmaResponseDTO>> getAllTurma(){
+        List<Turma> turmas = this.turmaService.getTurmas();
+        List<TurmaResponseDTO> turmaResponse = this.turmaMapper.toTurmaResponseDTOList(turmas);
+        return ResponseEntity.status(HttpStatus.OK).body(turmaResponse);
     }
 
 }
