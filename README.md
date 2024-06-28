@@ -1,4 +1,4 @@
-# BackendLunna
+# Backend Lunna
 
 **Motivação do Projeto:**
 Este projeto foi idealizado para desenvolver uma solução sólida e eficiente que possa responder às crescentes necessidades de sistemas backend. As tecnologias Java, MySQL e Spring Boot foram escolhidas devido à sua reconhecida confiabilidade, capacidade de escalabilidade e facilidade de desenvolvimento.
